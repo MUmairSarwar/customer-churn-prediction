@@ -1,5 +1,7 @@
 # Telecom Customer Churn Prediction
 
+[![tests](https://github.com/MUmairSarwar/customer-churn-prediction/actions/workflows/tests.yml/badge.svg)](https://github.com/MUmairSarwar/customer-churn-prediction/actions/workflows/tests.yml)
+
 An end-to-end machine-learning project for a practical retention question: **which customers should a telecom company contact before they leave?**
 
 The repository uses IBM's public Telco Customer Churn sample, compares two interpretable classification baselines and selects a decision threshold using an explicit business-cost assumption. It is designed as a reproducible portfolio project rather than a one-off notebook.
