@@ -1,94 +1,46 @@
-# Customer Churn Prediction
+# Telecom Customer Churn Prediction
 
-This project demonstrates a complete machine learning workflow for predicting customer churn using Python. It includes data generation, preprocessing, model training, evaluation, and interpretation. The goal is to build a simple, clean, and easy-to-understand baseline model suitable for business decision-making.
+An end-to-end machine-learning project for a practical retention question: **which customers should a telecom company contact before they leave?**
 
----
+The repository uses IBM's public Telco Customer Churn sample, compares two interpretable classification baselines and selects a decision threshold using an explicit business-cost assumption. It is designed as a reproducible portfolio project rather than a one-off notebook.
 
-## 📌 Project Overview
+![Project dashboard](reports/figures/churn_dashboard.svg)
 
-Customer churn prediction helps companies identify which customers are likely to leave.  
-In this project, we:
+## What the project does
 
-- Created a synthetic telecom-style churn dataset  
-- Explored data using pandas  
-- Trained a Logistic Regression model  
-- Evaluated model performance using standard classification metrics  
-- Generated actionable insights for understanding churn behavior  
+- Cleans 7,043 customer records and handles blank `TotalCharges` values
+- Separates identifiers from model features
+- Uses train, validation and holdout test sets to avoid tuning on final results
+- Compares class-weighted logistic regression and random forest models
+- Reports ROC AUC, PR AUC, Brier score, precision, recall and F1
+- Selects a retention threshold where a missed churner is assumed to cost five times as much as an unnecessary contact
+- Produces a business summary, model comparison and recruiter-ready dashboard
+- Runs automated tests in GitHub Actions
 
----
+## Results
 
-## 🧠 Machine Learning Steps
+The selected logistic-regression model achieved **0.843 ROC AUC** and **0.633 PR AUC** on the untouched holdout set. At the validation-selected threshold of **0.30**, it identified **93.3% of churners**; precision was **43.5%**, showing the operational trade-off created by prioritising missed churners.
 
-### **1. Data Generation**
-A 2000-row dataset was generated using `make_classification` with realistic customer behavior features such as:
+Run `python -m src.pipeline` to reproduce the committed results. Exact metrics are stored in [`reports/model_metrics.json`](reports/model_metrics.json). The cost ratio is a transparent demonstration assumption—not a claimed company figure.
 
-- Monthly charges  
-- Tenure  
-- Number of products  
-- Support calls  
-- Contract length  
-- Usage and satisfaction scores  
+## Run locally
 
-Target variable:  
-`churn` (1 = customer will leave, 0 = stay)
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+python -m pytest -q
+python -m src.pipeline
+```
 
----
+If the data file is missing, restore it from the official source with `python -m src.download_data`.
 
-### **2. Preprocessing**
-- Organized features into a DataFrame  
-- Created feature matrix `X` and target vector `y`  
-- Split into train and test sets  
+## Data source and limitations
 
----
+The data comes from IBM's public [`telco-customer-churn-on-icp4d`](https://github.com/IBM/telco-customer-churn-on-icp4d/tree/master/data) sample. It is useful for demonstrating a workflow, but it is not current production data. Observed relationships are associations, not causal effects. Deployment would require current company data, monitoring, fairness review, cost validation and a controlled retention experiment.
 
-### **3. Model Training**
-Algorithm used:
+## Author
 
-- ✔ Logistic Regression (`sklearn.linear_model.LogisticRegression`)
+Muhammad Umair Sarwar — Mathematics in Data Science, TU Darmstadt
 
-Model achieved:
-
-- **84.5% accuracy** on the test set  
-- Balanced precision/recall for both classes  
-
----
-
-### **4. Evaluation Metrics**
-We used:
-
-- Confusion Matrix  
-- Accuracy Score  
-- Classification Report  
-  - Precision  
-  - Recall  
-  - F1-score  
-
-These help assess real-world performance and potential model improvements.
-
----
-
-## 📊 Results
-
-- The model performs well as a **baseline churn classifier**  
-- Shows balanced performance between positive/negative classes  
-- Can be extended with:
-  - Feature scaling  
-  - Additional models (Random Forest, XGBoost)  
-  - Hyperparameter tuning  
-  - Real telecom datasets  
-
----
-
-## 🛠 Tools & Technologies
-
-- Python  
-- NumPy  
-- pandas  
-- scikit-learn  
-- Google Colab / Jupyter Notebook  
-- GitHub  
-
----
-
-## 📂 Repository Contents
-
+Code in this repository is available under the MIT License.
