@@ -1,0 +1,3 @@
+model,validation_roc_auc
+Logistic regression,0.8362435092614119
+Random forest,0.8321927717068383
