@@ -201,6 +201,10 @@ cython_debug/
 .cursorignore
 .cursorindexingignore
 
+# Downloaded source data and local LinkedIn export
+data/telco_customer_churn.csv
+reports/figures/churn_dashboard.png
+
 # Marimo
 marimo/_static/
 marimo/_lsp/
