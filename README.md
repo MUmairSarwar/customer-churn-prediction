@@ -41,8 +41,15 @@ If the data file is missing, restore it from the official source with `python -m
 
 The data comes from IBM's public [`telco-customer-churn-on-icp4d`](https://github.com/IBM/telco-customer-churn-on-icp4d/tree/master/data) sample. It is useful for demonstrating a workflow, but it is not current production data. Observed relationships are associations, not causal effects. Deployment would require current company data, monitoring, fairness review, cost validation and a controlled retention experiment.
 
+## Other selected projects
+
+- [Rhine-Main Heat Risk Forecasting](https://github.com/MUmairSarwar/germany-heat-risk-forecasting)
+- [Retail Customer & Operations Analytics](https://github.com/MUmairSarwar/retail-customer-analytics)
+- [Robust Federated Learning](https://github.com/MUmairSarwar/robust-federated-learning-ml-security)
+- [Strategic Classification](https://github.com/MUmairSarwar/strategic-classification-toy)
+
 ## Author
 
-Muhammad Umair Sarwar — Mathematics in Data Science, TU Darmstadt
+Muhammad Umair Sarwar - M.Sc. Mathematics student (Mathematics in Data Science), TU Darmstadt.
 
 Code in this repository is available under the MIT License.
