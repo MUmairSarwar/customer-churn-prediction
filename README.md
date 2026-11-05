@@ -8,6 +8,15 @@ The repository uses IBM's public Telco Customer Churn sample, compares two inter
 
 ![Project dashboard](reports/figures/churn_dashboard.svg)
 
+
+## Data period and version history
+
+- **December 2025:** a synthetic-data churn notebook was recorded in this repository.
+- **August 2026:** the project was substantially redeveloped around IBM's public Telco Customer Churn sample, with separate train/validation/holdout sets, model comparisons, a cost-based threshold, reports and automated tests.
+- **Dataset availability:** IBM's source repository records the dataset by September 2019. Its publication date does not establish the dates of the underlying customer observations.
+
+The reported IBM-sample metrics describe the August 2026 version, not the earlier synthetic-data prototype. Repository dates record publication and revisions, not necessarily the start of local development.
+
 ## What the project does
 
 - Cleans 7,043 customer records and handles blank `TotalCharges` values
