@@ -5,6 +5,7 @@ from dataclasses import dataclass
 import numpy as np
 import pandas as pd
 from sklearn.compose import ColumnTransformer
+from sklearn.base import clone
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.impute import SimpleImputer
 from sklearn.linear_model import LogisticRegression
@@ -54,7 +55,7 @@ def build_models(features: pd.DataFrame) -> dict[str, Pipeline]:
     )
     return {
         "Logistic regression": Pipeline([("preprocessor", preprocessor), ("model", LogisticRegression(class_weight="balanced", max_iter=2_000, random_state=42))]),
-        "Random forest": Pipeline([("preprocessor", preprocessor), ("model", RandomForestClassifier(n_estimators=250, min_samples_leaf=3, class_weight="balanced", random_state=42, n_jobs=-1))]),
+        "Random forest": Pipeline([("preprocessor", clone(preprocessor)), ("model", RandomForestClassifier(n_estimators=250, min_samples_leaf=3, class_weight="balanced", random_state=42, n_jobs=-1))]),
     }
 
 
@@ -64,15 +65,16 @@ def choose_cost_threshold(y_true, probabilities: np.ndarray, false_negative_cost
     Cost is ``false_negative_cost * FN + false_positive_cost * FP``. Because the
     comparison is strict, ties keep the lowest threshold.
     """
-    best = ThresholdResult(threshold=0.5, cost=np.iinfo(np.int32).max)
+    best = ThresholdResult(threshold=0.10, cost=len(y_true) * max(false_negative_cost, false_positive_cost) + 1)
     y_array = np.asarray(y_true)
-    for threshold in np.arange(0.10, 0.81, 0.01):
+    for step in range(10, 81):
+        threshold = step / 100
         predictions = (probabilities >= threshold).astype(int)
         false_negatives = int(((y_array == 1) & (predictions == 0)).sum())
         false_positives = int(((y_array == 0) & (predictions == 1)).sum())
         cost = false_negatives * false_negative_cost + false_positives * false_positive_cost
         if cost < best.cost:
-            best = ThresholdResult(round(float(threshold), 2), cost)
+            best = ThresholdResult(threshold, cost)
     return best
 
 

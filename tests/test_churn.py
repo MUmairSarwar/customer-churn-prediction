@@ -1,7 +1,7 @@
 import numpy as np
 import pandas as pd
 
-from src.churn import choose_cost_threshold, classification_metrics, load_data
+from src.churn import build_models, choose_cost_threshold, classification_metrics, load_data
 
 
 def test_load_data_converts_target_and_total_charges(tmp_path):
@@ -16,6 +16,19 @@ def test_cost_threshold_returns_valid_threshold():
     result = choose_cost_threshold(np.array([0, 0, 1, 1]), np.array([0.1, 0.4, 0.45, 0.9]))
     assert 0.10 <= result.threshold <= 0.80
     assert result.cost >= 0
+
+
+def test_threshold_cost_matches_returned_threshold_at_grid_boundary():
+    result = choose_cost_threshold(np.array([0, 1]), np.array([0.11, 0.12]))
+    assert result.threshold == 0.12
+    assert result.cost == 0
+
+
+def test_model_candidates_have_independent_preprocessors():
+    models = build_models(pd.DataFrame({"tenure": [1, 2]}))
+    logistic = models["Logistic regression"].named_steps["preprocessor"]
+    forest = models["Random forest"].named_steps["preprocessor"]
+    assert logistic is not forest
 
 
 def test_classification_metrics_are_bounded():

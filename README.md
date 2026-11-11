@@ -2,7 +2,7 @@
 
 [![tests](https://github.com/MUmairSarwar/customer-churn-prediction/actions/workflows/tests.yml/badge.svg)](https://github.com/MUmairSarwar/customer-churn-prediction/actions/workflows/tests.yml)
 
-Which customers should a telecom company contact before they cancel? This project fits two classifiers to IBM's public Telco Customer Churn sample and then picks the decision threshold from an explicit cost assumption instead of using the default 0.5.
+I built a scikit-learn pipeline to compare logistic regression and random forest on IBM's public Telco Customer Churn sample. A decision threshold selected on validation data illustrates how a hypothetical retention budget can trade false alarms against missed churners.
 
 ![Project dashboard](reports/figures/churn_dashboard.svg)
 
@@ -78,7 +78,7 @@ The data is the Telco Customer Churn sample from IBM's [`telco-customer-churn-on
 
 ## History
 
-An earlier version (December 2025) was a notebook on synthetic data. In August 2026 I rebuilt the project around the IBM sample with separate validation and holdout sets, the cost-based threshold, generated reports and tests. All results above come from the rebuilt version.
+The earliest version visible in GitHub is a [December 2025 notebook](https://github.com/MUmairSarwar/customer-churn-prediction/blob/910c5ad/customer_churn.ipynb) that generates synthetic data. The August 2026 rebuild uses the IBM sample, separate validation and holdout sets, a cost-based threshold, generated reports and tests. The results above come from the IBM-data version.
 
 ## Author
 
