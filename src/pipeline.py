@@ -29,6 +29,7 @@ def _feature_importance(model) -> pd.Series:
 def main() -> None:
     data = load_data(str(DATA_PATH))
     features, target = split_features(data)
+    # 60/20/20: hold out 20% first, then take 25% of the remainder for validation.
     x_train, x_test, y_train, y_test = train_test_split(features, target, test_size=0.20, random_state=42, stratify=target)
     x_train, x_valid, y_train, y_valid = train_test_split(x_train, y_train, test_size=0.25, random_state=42, stratify=y_train)
 

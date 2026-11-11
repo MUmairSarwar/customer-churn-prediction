@@ -59,7 +59,11 @@ def build_models(features: pd.DataFrame) -> dict[str, Pipeline]:
 
 
 def choose_cost_threshold(y_true, probabilities: np.ndarray, false_negative_cost: int = 5, false_positive_cost: int = 1) -> ThresholdResult:
-    """Choose a validation threshold using an explicit retention-cost assumption."""
+    """Return the threshold in 0.10, 0.11, ..., 0.80 with the lowest total cost.
+
+    Cost is ``false_negative_cost * FN + false_positive_cost * FP``. Because the
+    comparison is strict, ties keep the lowest threshold.
+    """
     best = ThresholdResult(threshold=0.5, cost=np.iinfo(np.int32).max)
     y_array = np.asarray(y_true)
     for threshold in np.arange(0.10, 0.81, 0.01):
