@@ -78,7 +78,7 @@ The data is the Telco Customer Churn sample from IBM's [`telco-customer-churn-on
 
 ## History
 
-I worked on the first version from May to August 2024. It was a notebook on synthetic data and was first committed in December 2025. In August 2026 I rebuilt the project around the IBM sample with separate validation and holdout sets, the cost-based threshold, generated reports and tests. All results above come from the rebuilt version.
+I worked on this project from May to August 2024. It started as a notebook on synthetic data, which I then rebuilt around the IBM sample with separate validation and holdout sets, the cost-based threshold, generated reports and tests. All results above come from the final version.
 
 ## Author
 
