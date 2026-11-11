@@ -78,7 +78,7 @@ The data is the Telco Customer Churn sample from IBM's [`telco-customer-churn-on
 
 ## History
 
-The earliest version visible in GitHub is a [December 2025 notebook](https://github.com/MUmairSarwar/customer-churn-prediction/blob/910c5ad/customer_churn.ipynb) that generates synthetic data. The August 2026 rebuild uses the IBM sample, separate validation and holdout sets, a cost-based threshold, generated reports and tests. The results above come from the IBM-data version.
+I worked on the original churn project from May to August 2024. The earliest version visible in GitHub is a [December 2025 notebook](https://github.com/MUmairSarwar/customer-churn-prediction/blob/910c5ad/customer_churn.ipynb) that generates synthetic data. The August 2026 rebuild uses the IBM sample, separate validation and holdout sets, a cost-based threshold, generated reports and tests. The results above come from the IBM-data version.
 
 ## Author
 
